@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Image Grid</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f3f3f3;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      max-width: 90%;
+    }
+    .grid-item {
+      position: relative;
+      cursor: pointer;
+    }
+    .grid-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .grid-item img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container" id="imageGrid"></div>
+
+  <script>
+    function openLightbox(imagePath) {
+      alert('Clicked on image: ' + imagePath);
+      // Add your lightbox implementation here
+    }
+
+    function createImageGrid() {
+      const imageGrid = document.getElementById('imageGrid');
+      const totalImages = 283;
+
+      for (let i = 1; i <= totalImages; i++) {
+        const fileFormat = i <= 25 ? '.jpeg' : '.jpg';
+        const fileName = `image${i}${fileFormat}`;
+
+        // Create grid item container
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+
+        // Create image element
+        const imgElement = document.createElement('img');
+        imgElement.src = `path/to/your/images/${fileName}`; // Replace with your actual image path
+        imgElement.alt = `Image ${i}`;
+        imgElement.onclick = () => openLightbox(fileName);
+
+        // Append image to grid item and grid item to grid container
+        gridItem.appendChild(imgElement);
+        imageGrid.appendChild(gridItem);
+      }
+    }
+
+    // Initialize the image grid on page load
+    window.onload = createImageGrid;
+  </script>
+</body>
+</html>
+
+                           Script ini membuat grid gambar dinamis sesuai spesifikasi yang diminta. Gambar dalam format .jpeg hingga urutan ke-25 dan .jpg untuk sisanya akan ditampilkan. Fungsi openLightbox() dipicu dengan parameter nama file gambar saat gambar diklik. Silakan sesuaikan path/to/your/images/ dengan lokasi direktori gambar yang benar. Jika ada kebutuhan tambahan
+                           
+                           
+                           
+                           
+                           
+                           
+                           <main id="gridContainer">
+  <script>
+    const container = document.getElementById('gridContainer');
+    
+    for (let i = 1; i <= 283; i++) {
+      const fileFormat = i <= 25 ? 'jpeg' : 'jpg';
+      const div = document.createElement('div');
+      div.className = 'grid-item';
+      div.innerHTML = `
+        <div class="grid-item" onclick="openLightbox('${i}.${fileFormat}')">
+          <img src="${i}.${fileFormat}" alt="Image ${i}">
+        </div>`;
+      container.appendChild(div);
+    }
+  </script>
+</main>
